@@ -410,6 +410,11 @@ html.nx-live .nx-navbar.is-hidden > .inner { transform: translateY(-100%) }
   display: block!important; width: 78px!important; min-width: 78px!important; height: 28px!important; max-width: none!important; max-height: none!important;
   object-fit: contain; object-position: left center; cursor: default }
 .nx-navbar .c-image, .nx-navbar-brand .c-wrapper, .nx-foot-brand .c-image { flex: none!important; min-width: max-content!important }
+/* Editor: GHL wraps images in its own (absolutely placed) resize/selection boxes, which add no width to a
+   shrink-wrapped column, so the column would collapse to 0. Reserve the logo's box explicitly. */
+.c-column.nx-navbar-brand, .nx-navbar-brand > .vertical.inner, .nx-navbar .c-image, .nx-navbar .c-image .image-container { min-width: 73px!important; min-height: 26px!important }
+.nx-foot-brand .c-image, .nx-foot-brand .c-image .image-container { min-width: 78px!important; min-height: 28px!important }
+.nx-navbar .c-image img, .nx-navbar-brand img, .nx-foot-brand .c-image img { position: static!important; inset: auto!important }
 
 /* Nav button: the shared nx-gbtn, sized like the bar's button */
 :is(a,button).nx-gbtn.nx-gbtn--nav { height: 44px!important; padding: 0 20px!important; gap: 8px; font-size: 13px!important; white-space: nowrap }
