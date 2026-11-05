@@ -401,8 +401,15 @@ html.nx-live .nx-navbar.is-hidden > .inner { transform: translateY(-100%) }
 /* Logo (Image element, class nx-logo). Clicking it glides to the top (footer code). */
 :is(.nx-navbar,.nx-footbar) .c-image, :is(.nx-navbar,.nx-footbar) .c-image :is(.image-container, .image-container > div, .image-container > div > div, picture, a) {
   display: block!important; width: auto!important; height: auto!important; margin: 0!important; padding: 0!important; line-height: 0 }
-img.nx-logo { display: block!important; width: 73px!important; height: 26px!important; max-width: none!important; object-fit: contain; cursor: pointer }
-img.nx-logo.nx-logo--footer { width: 78px!important; height: 28px!important; cursor: default }
+/* Fixed size whichever node GHL gives the class (the <img> or the .c-image wrapper), and even
+   with no class at all, so GHL's own image width (a % of the shrink-wrapped column) can't collapse it to 0. */
+:is(img.nx-logo, .nx-logo img, .nx-navbar-brand img, .nx-navbar .c-image img) {
+  display: block!important; width: 73px!important; min-width: 73px!important; height: 26px!important; max-width: none!important; max-height: none!important;
+  object-fit: contain; object-position: left center; cursor: pointer; opacity: 1!important; visibility: visible!important }
+:is(img.nx-logo--footer, .nx-logo--footer img, .nx-foot-brand .c-image img) {
+  display: block!important; width: 78px!important; min-width: 78px!important; height: 28px!important; max-width: none!important; max-height: none!important;
+  object-fit: contain; object-position: left center; cursor: default }
+.nx-navbar .c-image, .nx-navbar-brand .c-wrapper, .nx-foot-brand .c-image { flex: none!important; min-width: max-content!important }
 
 /* Nav button: the shared nx-gbtn, sized like the bar's button */
 :is(a,button).nx-gbtn.nx-gbtn--nav { height: 44px!important; padding: 0 20px!important; gap: 8px; font-size: 13px!important; white-space: nowrap }
