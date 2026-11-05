@@ -434,7 +434,7 @@ html.nx-live .nx-navbar.is-hidden > .inner { transform: translateY(-100%) }
 }
 
 /* ---------- FOOTER ---------- */
-.c-section.nx-footbar { position: relative; padding: 64px 0 0!important; margin: 0!important; background: #fff!important; overflow: visible }
+.c-section.nx-footbar { position: relative; padding: 64px 0 32px!important; margin: 0!important; background: #fff!important; overflow: visible }
 .nx-footbar > .inner { box-sizing: border-box!important; width: 100%!important; max-width: 1440px!important; margin: 0 auto!important; padding: 0 60px!important;
   display: flex!important; flex-direction: column!important; gap: 24px }
 .nx-footbar :where(.c-row) { box-sizing: border-box!important; width: 100%!important; max-width: none!important; margin: 0!important; padding: 0!important; background: none!important }
@@ -485,7 +485,7 @@ html.nx-live .nx-navbar.is-hidden > .inner { transform: translateY(-100%) }
 :is(a,button).nx-totop:hover .nx-top__arrow { transform: translateY(-2px) }
 
 /* Row 3 · legal line */
-.nx-footbar .c-row.nx-foot-legal { box-sizing: border-box!important; padding: 0 24px 32px!important }
+.nx-footbar .c-row.nx-foot-legal { box-sizing: border-box!important; padding: 0 24px!important }
 .nx-foot-legal > .inner { gap: 48px }
 .nx-foot-legal > .inner > .c-column:first-child { flex: 0 0 auto!important; width: 714px!important; max-width: 60%!important }
 .nx-foot-disclaimer, .nx-foot-disclaimer :is(p,span), .nx-foot-copy, .nx-foot-copy :is(p,span) { font: 300 13px/1.55 var(--nx-text,"Roboto",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif)!important; color: var(--nx-subtle,#6b6f7a)!important }
@@ -504,14 +504,15 @@ html.nx-live .nx-navbar.is-hidden > .inner { transform: translateY(-100%) }
   .nx-foot-card .c-column.nx-foot-top { grid-column: 1 / -1; justify-self: start }
   .nx-foot-top > .vertical.inner { align-items: flex-start!important }
   :is(a,button).nx-totop { flex-direction: row!important; align-items: center!important; gap: 14px }
-  .nx-footbar .c-row.nx-foot-legal { padding: 0 8px 24px!important }
+  .nx-footbar .c-row.nx-foot-legal { padding: 0 8px!important }
+  .c-section.nx-footbar { padding-bottom: 24px!important }
   .nx-foot-legal > .inner { flex-direction: column!important; gap: 12px }
   .nx-foot-legal > .inner > .c-column:first-child { width: auto!important; max-width: none!important }
   .nx-foot-legal > .inner > .c-column { flex: none!important; width: 100%!important }
   .nx-foot-copy, .nx-foot-copy :is(p,span) { text-align: left!important }
 }
 @media (max-width:767px) {
-  .c-section.nx-footbar { padding-top: 32px!important }
+  .c-section.nx-footbar { padding-top: 32px!important; padding-bottom: 24px!important }
   .nx-footbar .c-column.nx-foot-info { padding: 0 20px!important }
   .nx-foot-card > .inner { grid-template-columns: auto auto; justify-content: space-between; gap: 28px 16px }
   .nx-footbar .c-row.nx-foot-card { padding: 28px 24px!important; border-radius: 24px }
@@ -1594,14 +1595,17 @@ html:not(.nx-live) .nx-cta-actions .c-button, html:not(.nx-live) .nx-cta-actions
    HERO  · section "nx-sec nx-hero nx-lp nx-lp-hero"
    Row: column "nx-hero-copy" + column "nx-hero-visual nx-hero-visual--still nx-lp-visual"
    ===================================================================== */
-.c-section.nx-lp-hero { --sec-pt: 0px; --sec-pb: 0px;
-  /* Static mesh (editor + no-JS). Live, the footer code swaps in drifting blobs. */
+.c-section.nx-lp-hero { --sec-pt: 0px; --sec-pb: 0px }
+/* Static mesh (editor + no-JS) on its own layer, so a GHL section background (or the
+   editor's) can't cover it. Live, the footer code swaps in drifting blobs (has-mesh). */
+.c-section.nx-lp-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background-repeat: no-repeat!important;
   background-image:
     radial-gradient(closest-side, #c7ecfb, rgba(199,236,251,.7) 55%, rgba(199,236,251,.5) 85%, rgba(199,236,251,0)),
     radial-gradient(closest-side, #ecd6fb, rgba(236,214,251,.7) 55%, rgba(236,214,251,.5) 85%, rgba(236,214,251,0)),
     radial-gradient(closest-side, #f1e4fd, rgba(241,228,253,.7) 55%, rgba(241,228,253,.5) 85%, rgba(241,228,253,0))!important;
   background-size: 820px 820px, 760px 760px, 720px 720px!important;
   background-position: calc(50% + 290px) 300px, calc(50% - 50px) -534px, calc(50% + 540px) -100px!important }
+.c-section.nx-lp-hero.has-mesh::before { display: none }
 .nx-lp-hero .nx-mesh i { filter: blur(50px); opacity: 1 }
 .nx-lp-hero .nx-mesh i:nth-child(1) { width: 820px; height: 820px; left: calc(50% - 120px); top: 300px; background: radial-gradient(closest-side, #c7ecfb, rgba(199,236,251,.7) 55%, rgba(199,236,251,.5) 85%, rgba(199,236,251,0)) }
 .nx-lp-hero .nx-mesh i:nth-child(2) { width: 760px; height: 760px; left: calc(50% - 430px); top: -534px; background: radial-gradient(closest-side, #ecd6fb, rgba(236,214,251,.7) 55%, rgba(236,214,251,.5) 85%, rgba(236,214,251,0)) }
@@ -1645,7 +1649,8 @@ html:not(.nx-live) .nx-cta-actions .c-button, html:not(.nx-live) .nx-cta-actions
   .nx-lp-hero .nx-display, .nx-lp-hero .nx-display :is(h1,h2,h3,h4,h5,h6,p,span,strong) { font-size: clamp(48px,5.4vw,68px)!important }
 }
 @media (max-width:991px) {
-  .c-section.nx-lp-hero { --sec-pt: 72px;
+  .c-section.nx-lp-hero { --sec-pt: 72px }
+  .c-section.nx-lp-hero::before {
     background-size: 550px 550px, 510px 510px, 482px 482px!important;
     background-position: right -219px top 365px, right 29px top -193px, right -353px top 98px!important }
   .nx-lp-hero .nx-mesh i:nth-child(1) { width: 550px; height: 550px; left: calc(100% - 331px); top: 365px }
