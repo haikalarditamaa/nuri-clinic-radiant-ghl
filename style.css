@@ -1103,7 +1103,7 @@ html.nx-js .nx-step:not(.is-on) > .vertical.inner::before { filter: grayscale(1)
    Phones: the card collapses to that header row and opens on tap (footer code). */
 .nx-checkout .c-column:is(.nx-coaside, :has(.nx-sum-title)) > .vertical.inner {
   position: sticky!important; top: 100px; height: auto!important; align-self: flex-start;
-  display: grid!important; grid-template-columns: 64px minmax(0,1fr) auto; column-gap: 14px; row-gap: 0!important; align-items: center;
+  display: grid!important; grid-template-columns: 64px minmax(0,1fr) auto; column-gap: 20px; row-gap: 0!important; align-items: center;
   padding: 24px 24px 28px!important; box-sizing: border-box; background: #fff!important; border: 1px solid var(--nx-line); border-radius: 28px;
   box-shadow: 0 2px 6px rgba(60,40,140,.06) }
 .nx-checkout .c-column:is(.nx-coaside, :has(.nx-sum-title)) { align-self: stretch }
@@ -1113,14 +1113,15 @@ html.nx-js .nx-step:not(.is-on) > .vertical.inner::before { filter: grayscale(1)
   border-radius: 16px; background: linear-gradient(90deg,#efeaff,#dcefff) }
 .nx-checkout .vertical.inner > .c-image:has(.nx-sum-thumb) :is(.image-container, .image-container > div, .image-container > div > div, picture) { width: 100%!important; height: 100%!important }
 .nx-checkout .c-image img.nx-sum-thumb { position: absolute; left: -7px; top: -7px; width: 78px!important; height: 78px!important; max-width: none!important; object-fit: contain }
-.nx-checkout .vertical.inner > .c-wrapper:has(.nx-sum-title) { grid-column: 2!important; grid-row: 1; align-self: end; margin-bottom: 4px!important }
-.nx-checkout .vertical.inner > .c-wrapper:has(.nx-sum-product) { grid-column: 2!important; grid-row: 2; align-self: start }
-.nx-checkout .vertical.inner > .c-wrapper:has(.nx-sum-price) { grid-column: 3!important; grid-row: 1 / span 2 }
-.nx-sum-title, .nx-sum-title :is(h1,h2,h3,h4,h5,h6,p,span) { font: 500 15px/1.2 var(--nx-display)!important; color: var(--nx-ink)!important }
-.nx-sum-product, .nx-sum-product :is(p,span) { font: 400 14px/1.55 var(--nx-text)!important; color: var(--nx-muted)!important }
-.nx-sum-price, .nx-sum-price :is(p,span) { font: 500 26px/1.25 var(--nx-display)!important; letter-spacing: -.01em!important; color: var(--nx-ink)!important; white-space: nowrap; font-variant-numeric: tabular-nums }
+.nx-checkout .vertical.inner > .c-wrapper:has(.nx-sum-title) { grid-column: 2!important; grid-row: 1; align-self: end; margin: 0 0 2px!important }
+.nx-checkout .vertical.inner > .c-wrapper:has(.nx-sum-product) { grid-column: 2!important; grid-row: 2; align-self: start; margin: 0!important }
+/* price: centred on the thumbnail, on the same centre line as the name + duration block */
+.nx-checkout .vertical.inner > .c-wrapper:has(.nx-sum-price) { grid-column: 3!important; grid-row: 1 / span 2; align-self: center!important; margin: 0!important; text-align: right }
+.nx-sum-title, .nx-sum-title :is(h1,h2,h3,h4,h5,h6,p,span) { font: 500 16px/1.25 var(--nx-display)!important; color: var(--nx-ink)!important; text-wrap: balance }
+.nx-sum-product, .nx-sum-product :is(p,span) { font: 400 14px/1.4 var(--nx-text)!important; color: var(--nx-muted)!important }
+.nx-sum-price, .nx-sum-price :is(p,span) { font: 500 22px/1.2 var(--nx-display)!important; letter-spacing: -.01em!important; color: var(--nx-ink)!important; white-space: nowrap; font-variant-numeric: tabular-nums }
 /* Kit photo */
-.nx-checkout .vertical.inner > .c-image:has(.nx-sum-media) { margin-top: 20px!important; height: 220px; overflow: hidden; border-radius: 20px; background: #0d0d14 }
+.nx-checkout .vertical.inner > .c-image:has(.nx-sum-media) { margin-top: 24px!important; height: 220px; overflow: hidden; border-radius: 20px; background: #0d0d14 }
 .nx-checkout .vertical.inner > .c-image:has(.nx-sum-media) :is(.image-container, .image-container > div, .image-container > div > div, picture) { width: 100%!important; height: 100%!important; max-width: none!important }
 .nx-checkout .c-image img.nx-sum-media { width: 100%!important; height: 100%!important; max-width: none!important; object-fit: cover }
 /* Inclusions */
