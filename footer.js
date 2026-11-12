@@ -274,18 +274,27 @@
       gsap.to(mesh, { y: 90, ease: 'none', scrollTrigger: st });
     } else ready();
 
+    /* Already on screen at load (e.g. the checkout heading): play now. A clamp() start sits at 0
+       for these, and ScrollTrigger would wait for the first scroll before firing. */
+    var onLoad = function (el) { return scrollY < 2 && el.getBoundingClientRect().top < innerHeight * 0.88; };
+
     /* Section headings: words rise */
     $$('.nx-h2, .nx-split').forEach(function (el) {
       if (el.closest('.nx-hero')) return;
-      gsap.from(split(el), { yPercent: 110, duration: 1, stagger: 0.04, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'clamp(top 88%)', once: true } });
+      var tw = { yPercent: 110, duration: 1, stagger: 0.04, ease: 'power4.out' };
+      if (onLoad(el)) { tw.delay = 0.25; gsap.from(split(el), tw); return; }
+      tw.scrollTrigger = { trigger: el, start: 'clamp(top 88%)', once: true };
+      gsap.from(split(el), tw);
     });
 
     /* Fade-ups in batches. clamp() makes items near the very bottom of the page
        reveal even when the page can't scroll far enough to reach their start line. */
     var reveal = function (items, y, start) {
       if (!items.length) return;
+      var now = items.filter(onLoad), later = items.filter(function (el) { return now.indexOf(el) < 0; });
       gsap.set(items, { opacity: 0, y: y, transition: 'none' });
-      ScrollTrigger.batch(items, { start: start, once: true, onEnter: function (b) {
+      if (now.length) gsap.to(now, { opacity: 1, y: 0, duration: 1, stagger: 0.08, delay: 0.15, clearProps: 'transform,transition' });
+      if (later.length) ScrollTrigger.batch(later, { start: start, once: true, onEnter: function (b) {
         gsap.to(b, { opacity: 1, y: 0, duration: 1, stagger: 0.08, clearProps: 'transform,transition' });
       } });
     };
