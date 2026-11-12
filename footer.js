@@ -359,7 +359,12 @@
   function run() {
     var ok = window.gsap && window.ScrollTrigger && !reduced;
     if (ok && window.Lenis && !hasOrder()) {
-      lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+      /* GHL popups (the form behind "Get Started") scroll natively inside their own fixed
+         #overlay; Lenis must leave wheel/touch there alone or it scrolls the page behind. */
+      lenis = new Lenis({ lerp: 0.1, smoothWheel: true,
+        prevent: function (node) { return node.id === 'overlay' || /\b(popup-body|hl_main_popup)\b/.test(node.className); } });
+      /* ...and when the form reaches its end, the page behind must not take over the scroll */
+      document.head.appendChild(document.createElement('style')).textContent = '#overlay{overscroll-behavior:contain}';
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
       gsap.ticker.lagSmoothing(0);
