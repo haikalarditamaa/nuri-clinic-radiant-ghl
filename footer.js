@@ -173,6 +173,7 @@
       return m ? m[1] + '-week program' : n;
     };
     var money = function (t) { return t.replace(/\d+/, function (n) { return n.replace(/\B(?=(\d{3})+(?!\d))/g, ','); }); };
+    var whole = function (t) { return t.replace(/\.00(?!\d)/g, ''); };   /* card amounts: "$1,499.00" → "$1,499" (real cents stay) */
     var setText = function (el, v) { while (el.children.length === 1) el = el.children[0]; if (el.textContent !== v) el.textContent = v; };
     var setRow = function (el, fallback, v) {               /* <p><span>Label</span><strong>$1,499.00</strong></p> */
       var p = $('p', el) || el, b = p.querySelector('strong');
@@ -198,7 +199,7 @@
         var price = text(tot) || text(sub) || text($('.order-form__prod-price', picked[0]));
         var vals = {
           product: picked.map(function (p) { return nice(text($('.order-form__prod-name', p))); }).join(' + '),
-          subtotal: money(text(sub) || price), total: money(price)
+          subtotal: whole(money(text(sub) || price)), total: whole(money(price))
         };
         Object.keys(targets).forEach(function (k) { if (vals[k]) $$(targets[k]).forEach(function (n) { if (!form.contains(n)) setText(n, vals[k]); }); });
         Object.keys(rows).forEach(function (k) { if (vals[k]) $$(rows[k][0]).forEach(function (n) { if (!form.contains(n)) setRow(n, rows[k][1], vals[k]); }); });
