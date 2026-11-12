@@ -1,0 +1,48 @@
+/*! Nuri Clinic · GHL funnel · Book a Call program picker (book-a-call.css)
+   Loaded only on the Book a Call page, after style.css: Header Code <link> (live) + Custom CSS @import (editor).
+   Section "nx-sec nx-calendar nx-pick" replaces the Calendar element.
+   Follows Radiant 12.4 "Pattern · Book a call": one bordered booking panel, columns split by hairlines,
+   options as flat slot rows (radius/sm) that turn ink on hover. No card inside a card.
+   Rows "nx-pick-strip" + "nx-pick-panel" · columns "nx-pick-col"
+   Text: Sub-Headline "nx-pick-cat" · Paragraph "nx-pick-strip-text" · Buttons "nx-gbtn nx-pick-btn" (Text + Sub Text) */
+/* Panel = strip row + columns row, drawn as one bordered card (radius/lg 20, border only) */
+.nx-pick .c-row.nx-pick-strip, .nx-pick .c-row.nx-pick-panel { max-width: 1200px!important; margin-left: auto!important; margin-right: auto!important; box-sizing: border-box!important;
+  border: 1px solid var(--nx-line,#e4e4e8)!important }
+.nx-pick .c-row.nx-pick-strip { padding: 12px 24px!important; background: var(--nx-subtle-bg,#f5f5f6)!important; border-radius: 20px 20px 0 0 }
+.nx-pick .c-row.nx-pick-panel { margin-top: calc(-1 * var(--row-gap,40px))!important; border-top: 0!important; border-radius: 0 0 20px 20px; background: #fff!important; overflow: hidden }
+.nx-pick-strip-text, .nx-pick-strip-text :is(p,span) { font: 400 12.5px/1.45 var(--nx-text)!important; color: var(--nx-muted)!important; text-align: center!important }
+
+/* Columns: equal thirds, hairline dividers, no card of their own */
+.nx-pick .nx-pick-panel > .inner { display: grid!important; grid-template-columns: repeat(3,minmax(0,1fr))!important; gap: 0!important; align-items: stretch!important }
+.nx-pick .nx-pick-panel > .inner > .c-column { width: auto!important; max-width: none!important; min-width: 0!important; padding: 32px!important; box-sizing: border-box!important; background: none!important; border: 0!important }
+.nx-pick .nx-pick-panel > .inner > .c-column + .c-column { border-left: 1px solid var(--nx-line,#e4e4e8)!important }
+.nx-pick .nx-pick-col > .vertical.inner { gap: 8px!important; align-items: stretch!important }
+.nx-pick-cat, .nx-pick-cat :is(h1,h2,h3,h4,h5,h6,p,span) { font: 500 20px/1.25 var(--nx-display)!important; letter-spacing: -.01em!important; color: var(--nx-ink)!important }
+.nx-pick .nx-pick-col .c-sub-heading { margin-bottom: 12px!important }
+
+/* Option rows = Radiant time slots: subtle fill, radius/sm 10, ink when hovered or focused */
+.nx-pick .nx-pick-col .c-button { width: 100%!important; margin: 0!important; padding: 0!important }
+.nx-pick :is(a,button).nx-gbtn.nx-pick-btn { display: grid!important; grid-template-columns: minmax(0,1fr) auto; grid-template-areas: "main arrow" "sub arrow";
+  align-items: center!important; justify-content: stretch!important; column-gap: 16px; row-gap: 3px; width: 100%!important; height: auto!important; min-height: 60px!important;
+  padding: 12px 16px!important; border: 0!important; border-radius: 10px!important; background: var(--nx-subtle-bg,#f5f5f6)!important; color: var(--nx-ink,#0a0a0c)!important;
+  box-shadow: none!important; text-align: left!important; font-size: 15px!important; line-height: 1.3!important; white-space: normal!important;
+  transition: background-color .3s var(--nx-ease,ease), color .3s var(--nx-ease,ease) }
+.nx-pick :is(a,button).nx-gbtn.nx-pick-btn:is(:hover,:focus-visible) { background: var(--nx-ink,#0a0a0c)!important; color: #fff!important; box-shadow: none!important }
+.nx-pick :is(a,button).nx-pick-btn .main-heading-group { grid-area: main; display: block!important }
+.nx-pick :is(a,button).nx-pick-btn .main-heading-button { white-space: normal!important }
+.nx-pick :is(a,button).nx-pick-btn .sub-heading-button { grid-area: sub; display: block!important;
+  font: 400 12px/1.3 var(--nx-mono,"DM Mono",ui-monospace,monospace)!important; letter-spacing: .02em!important; color: var(--nx-muted,#5f6370)!important; transition: color .3s }
+.nx-pick :is(a,button).nx-pick-btn:is(:hover,:focus-visible) .sub-heading-button { color: rgba(255,255,255,.7)!important }
+.nx-pick :is(a,button).nx-pick-btn .sub-heading-button:empty { display: none!important }
+.nx-pick :is(a,button).nx-pick-btn::after { grid-area: arrow; width: 16px; height: 16px }
+
+@media (max-width:991px) {
+  .nx-pick .nx-pick-panel > .inner { grid-template-columns: minmax(0,1fr)!important }
+  .nx-pick .nx-pick-panel > .inner > .c-column { padding: 24px!important }
+  .nx-pick .nx-pick-panel > .inner > .c-column + .c-column { border-left: 0!important; border-top: 1px solid var(--nx-line,#e4e4e8)!important }
+}
+@media (max-width:767px) {
+  .nx-pick .c-row.nx-pick-strip { padding: 10px 16px!important }
+  .nx-pick .nx-pick-panel > .inner > .c-column { padding: 20px!important }
+  .nx-pick :is(a,button).nx-gbtn.nx-pick-btn { display: grid!important; min-height: 56px!important; font-size: 14.5px!important }
+}
