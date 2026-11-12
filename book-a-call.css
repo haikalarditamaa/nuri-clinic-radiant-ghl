@@ -16,7 +16,7 @@
 .nx-pick .nx-pick-panel > .inner { display: grid!important; grid-template-columns: repeat(3,minmax(0,1fr))!important; gap: 0!important; align-items: stretch!important }
 .nx-pick .nx-pick-panel > .inner > .c-column { width: auto!important; max-width: none!important; min-width: 0!important; padding: 32px!important; box-sizing: border-box!important; background: none!important; border: 0!important }
 .nx-pick .nx-pick-panel > .inner > .c-column + .c-column { border-left: 1px solid var(--nx-line,#e4e4e8)!important }
-.nx-pick .nx-pick-col > .vertical.inner { gap: 8px!important; align-items: stretch!important }
+.nx-pick .nx-pick-col > .vertical.inner { gap: 8px!important; align-items: stretch!important; justify-content: flex-start!important }   /* top-aligned, whatever vertical align GHL sets */
 .nx-pick-cat, .nx-pick-cat :is(h1,h2,h3,h4,h5,h6,p,span) { font: 500 20px/1.25 var(--nx-display)!important; letter-spacing: -.01em!important; color: var(--nx-ink)!important }
 .nx-pick .nx-pick-col .c-sub-heading { margin-bottom: 12px!important }
 
@@ -30,6 +30,7 @@
 .nx-pick :is(a,button).nx-gbtn.nx-pick-btn:is(:hover,:focus-visible) { background: var(--nx-ink,#0a0a0c)!important; color: #fff!important; box-shadow: none!important }
 .nx-pick :is(a,button).nx-pick-btn .main-heading-group { grid-area: main; display: block!important }
 .nx-pick :is(a,button).nx-pick-btn .main-heading-button { white-space: normal!important }
+.nx-pick :is(a,button).nx-pick-btn :is(.main-heading-group,.main-heading-button,.sub-heading-button) { justify-self: start!important; align-self: center; width: 100%!important; text-align: left!important }
 .nx-pick :is(a,button).nx-pick-btn .sub-heading-button { grid-area: sub; display: block!important;
   font: 400 12px/1.3 var(--nx-mono,"DM Mono",ui-monospace,monospace)!important; letter-spacing: .02em!important; color: var(--nx-muted,#5f6370)!important; transition: color .3s }
 .nx-pick :is(a,button).nx-pick-btn:is(:hover,:focus-visible) .sub-heading-button { color: rgba(255,255,255,.7)!important }
