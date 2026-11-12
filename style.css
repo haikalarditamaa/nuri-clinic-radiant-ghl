@@ -837,6 +837,45 @@ html.nx-js .nx-step:not(.is-on) > .vertical.inner::before { filter: grayscale(1)
 .nx-notice-text, .nx-notice-text :is(p,span) { font: 400 14px/1.6 var(--nx-text)!important; color: var(--nx-body)!important }
 @media (min-width:768px) { .c-section.nx-note-sec { display: none!important } }
 
+/* =====================================================================
+   03b PLANS · SINGLE DURATION  (section class "nx-sec nx-plans nx-plans--single")
+   For programs with one plan (Metabolic, Performance, Cellular Energy, MOTS-C).
+   Row "nx-solo" (the row IS the card) · columns "nx-solo-buy" + "nx-solo-incl"
+   Text: Sub-Headline "nx-plan-term" · Headline "nx-plan-price" · Paragraph "nx-plan-save" / "nx-solo-note" · Bullet List "nx-checks"
+   Radiant: one primary action, gradient hairline = featured, halves split by a hairline (no card in a card).
+   ===================================================================== */
+/* The row is the panel: gradient hairline border (Radiant featured), lavender shadow, two columns */
+.nx-plans--single .c-row.nx-solo { max-width: 920px!important; width: 100%!important; margin-left: auto!important; margin-right: auto!important; box-sizing: border-box!important;
+  border: 1.5px solid transparent!important; border-radius: 28px!important; overflow: hidden; box-shadow: var(--nx-shadow-lav,0 34px 70px -40px rgba(110,90,220,.45));
+  background: linear-gradient(#fff,#fff) padding-box, linear-gradient(135deg,#5ac8fa,#8e8cf8 55%,#c17cf6) border-box!important }
+.nx-plans--single .nx-solo > .inner { display: grid!important; grid-template-columns: minmax(0,1fr) minmax(0,1fr)!important; gap: 0!important; align-items: stretch!important; max-width: none!important }
+.nx-plans--single .nx-solo > .inner > .c-column { width: auto!important; max-width: none!important; min-width: 0!important; padding: 40px!important; box-sizing: border-box!important; background: none!important; border: 0!important }
+.nx-plans--single .nx-solo > .inner > .c-column + .c-column { border-left: 1px solid var(--nx-line,#e4e4e8)!important }
+.nx-plans--single .nx-solo .vertical.inner { align-items: stretch!important; justify-content: flex-start!important }
+
+/* Buy column: term · price · payment line · button · note */
+.nx-solo-buy .c-wrapper:has(> .nx-plan-term) { margin-bottom: 22px!important }
+.nx-solo-buy .nx-plan-price, .nx-solo-buy .nx-plan-price :is(h1,h2,h3,h4,h5,h6,p,span) { font-size: 54px!important; line-height: 1!important; letter-spacing: -.03em!important }
+.nx-solo-buy .c-wrapper:has(> .nx-plan-price) { margin-bottom: 12px!important }
+.nx-solo-buy .c-wrapper:has(> .nx-plan-save) { margin-bottom: 32px!important }
+.nx-solo-buy .c-button { width: 100%!important; margin: 0 0 16px!important }
+.nx-solo-buy :is(a,button).nx-gbtn { width: 100%!important; display: flex!important; justify-content: center!important }
+.nx-solo-note, .nx-solo-note :is(p,span) { font: 400 13px/1.55 var(--nx-text,"Roboto",sans-serif)!important; color: var(--nx-muted,#5f6370)!important }
+.nx-solo-note { display: flex!important; gap: 8px; align-items: flex-start }
+.nx-solo-note::before { content: ""; flex: none; width: 16px; height: 16px; margin-top: 1px; background: var(--nx-check-plain) center/contain no-repeat }
+
+/* Included column: label + check list on the subtle canvas */
+.nx-plans--single .nx-solo > .inner > .c-column.nx-solo-incl { background: var(--nx-subtle-bg,#f5f5f6)!important }
+.nx-solo-incl .c-wrapper:has(> .nx-plan-term) { margin-bottom: 22px!important }
+
+@media (max-width:767px) {
+  .nx-plans--single .c-row.nx-solo { border-radius: 24px!important }
+  .nx-plans--single .nx-solo > .inner { grid-template-columns: minmax(0,1fr)!important }
+  .nx-plans--single .nx-solo > .inner > .c-column { padding: 24px!important }
+  .nx-plans--single .nx-solo > .inner > .c-column + .c-column { border-left: 0!important; border-top: 1px solid var(--nx-line,#e4e4e8)!important }
+  .nx-solo-buy .nx-plan-price, .nx-solo-buy .nx-plan-price :is(h1,h2,h3,h4,h5,h6,p,span) { font-size: 44px!important }
+}
+
 /* ##################################################################### 02-not-eligible */
 /* =====================================================================
    NURI · 02 NOT ELIGIBLE · PAGE SECTIONS
