@@ -1163,6 +1163,36 @@ html.nx-js .nx-step:not(.is-on) > .vertical.inner::before { filter: grayscale(1)
   .nx-checkout .vertical.inner > .c-image:has(.nx-sum-media) { height: auto; aspect-ratio: 16 / 10 }
 }
 
+/* ---------- 03b CHECKOUT · NO SUMMARY CARD (v2, since 2026-11-13) ----------
+   Applies only when the Checkout section has no summary card (no nx-coaside column,
+   no .nx-sum-title / .nx-sum), so older pages that still have the card are unchanged.
+   GHL's Order Form already shows the product, price and totals, so on desktop the form
+   splits in two: fields on the left, product → totals → terms → card → button on a
+   grey panel on the right. Nothing here is program-specific: copy the page per program
+   and only the Order Form's product changes. */
+.nx-checkout .nx-colead, .nx-checkout .nx-colead :is(p,span) { margin: 0!important; max-width: 560px; font: 400 16px/1.6 var(--nx-text)!important; color: var(--nx-muted)!important }
+.nx-checkout .c-wrapper:has(> .nx-colead), .nx-checkout .nx-colead { margin-top: 12px!important }
+/* Label over the fields, styled like the form's own "Select product" / "Payment details" heads */
+.nx-checkout:not(:has(.nx-coaside, .nx-sum-title, .nx-sum)) .order-form__form-col::before { content: "Contact & shipping"; display: flex; align-items: center; margin: 0 0 20px;
+  font: 500 12.5px/1.2 var(--nx-display); letter-spacing: .09em; text-transform: uppercase; color: var(--nx-body) }
+
+@media (min-width:992px) {
+  /* Two areas, no outer padding (each pads itself). The grey panel is a background band,
+     so it never takes a grid cell. The last row is 1fr: it absorbs any extra height. */
+  .nx-checkout:not(:has(.nx-coaside, .nx-sum-title, .nx-sum)) .order-form__surface {
+    display: grid!important; grid-template-columns: minmax(0,1fr) 420px; grid-template-rows: repeat(5, auto) 1fr; align-items: start;
+    padding: 0!important; overflow: hidden;
+    background: linear-gradient(to right, #fff calc(100% - 421px), var(--nx-line) calc(100% - 421px) calc(100% - 420px), var(--nx-subtle-bg) calc(100% - 420px))!important }
+  .nx-checkout:not(:has(.nx-coaside, .nx-sum-title, .nx-sum)) .order-form__split { display: contents!important }
+  .nx-checkout:not(:has(.nx-coaside, .nx-sum-title, .nx-sum)) .order-form__form-col { grid-column: 1; grid-row: 1 / -1; padding: 40px 48px 48px!important }
+  .nx-checkout:not(:has(.nx-coaside, .nx-sum-title, .nx-sum)) :is(.order-form__offer-col, .order-form__surface > :not(.order-form__split)) { grid-column: 2; min-width: 0; box-sizing: border-box!important }
+  .nx-checkout:not(:has(.nx-coaside, .nx-sum-title, .nx-sum)) :is(.order-form__offer-col, .order-form__payment) { padding-left: 40px!important; padding-right: 40px!important }
+  .nx-checkout:not(:has(.nx-coaside, .nx-sum-title, .nx-sum)) .order-form__offer-head { margin-top: 40px!important }
+  .nx-checkout:not(:has(.nx-coaside, .nx-sum-title, .nx-sum)) .order-form__terms { margin-left: 40px!important; margin-right: 40px!important; background: #fff!important }
+  .nx-checkout:not(:has(.nx-coaside, .nx-sum-title, .nx-sum)) .order-form__payment { padding-bottom: 40px!important }
+  .nx-checkout:not(:has(.nx-coaside, .nx-sum-title, .nx-sum)) .order-form__prod:not(.order-form__prod--selected) { background: #fff!important }
+}
+
 /* ##################################################################### 04-confirmation */
 /* =====================================================================
    NURI · 04 CONFIRMATION · PAGE SECTIONS
